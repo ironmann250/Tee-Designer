@@ -75,6 +75,9 @@
 				<i class="fa fa-font fa-3x"></i>
 
 			</div>
+			<div class="menu_option sel_manual_controls">
+				<i class="fa fa-arrows fa-3x"></i>
+			</div>
 		</div>
 		<!--=============================================================-->
 		<div id='options'>
@@ -194,6 +197,37 @@
 				</button>
 
 			</div>
+
+			<div class="manual_controls">
+				<table style='border:1px solid'>
+					<tr>
+						<td>Move X
+						<td><button><</button></td>
+						<td><input class='form-control small input-md' type='number'></td>
+						<td><button>></button></td>
+					</tr>
+					<tr>
+						<td>Move Y
+						<td><button><</button></td>
+						<td><input class='form-control small input-md' type='number'></td>
+						<td><button>></button></td>
+					</tr>
+					<tr>
+						<td>Rotate
+						<td><button><</button></td>
+						<td><input class='form-control small input-md' type='number'></td>
+						<td><button>></button></td>
+					</tr>
+				</table>
+				<p><center>Objects</center></p>
+				<ul class='list-group'>
+					<li class='list-group-item obj-sel' id='0'>select object 1</li>
+					<li class='list-group-item obj-sel' id='1'>select object 2</li>
+					<li class='list-group-item obj-sel' id='2'>selectobject 3</li>
+					<li class='list-group-item obj-sel' id='3'>select object 4</li>
+				</ul>
+			</div>
+
 		</div>
 		<!--=============================================================-->
 		<!--=========================preview start====================================-->

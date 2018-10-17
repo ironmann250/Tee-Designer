@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$("#preview_back").css('background-image', 'url(tdesignAPI/images/product/'+$type+'/'+$color+'/'+$color+'_back.png) ') ;
 	//$("#preview_front, #preview_back , #preview_left, #preview_right").css('background-color', 'blue') ;
 	$("#preview_front,.T_type").removeClass('dis_none');
-	$("#preview_back,.color_pick,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
+	$("#preview_back,.color_pick,.default_samples,.custom_icon,.custom_font,.manual_controls").addClass('dis_none');
 	//$('.modal').css('dispaly','none');
 
 	//ONLOAD OVER
@@ -14,25 +14,28 @@ $(document).ready(function(){
 	/*==========================SWITCH MENU===========================*/
 	$(".sel_type").click(function(){
 		$(".T_type").removeClass('dis_none');
-		$(".color_pick,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
+		$(".manual_controls,.color_pick,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
 	});
 	$(".sel_color").click(function(){
 		$(".color_pick").removeClass('dis_none');
-		$(".T_type,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
+		$(".manual_controls,.T_type,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
 	});
 	$(".sel_art").click(function(){
 		$(".default_samples").removeClass('dis_none');
-		$(".T_type,.color_pick,.custom_icon,.custom_font").addClass('dis_none') ;
+		$(".manual_controls,.T_type,.color_pick,.custom_icon,.custom_font").addClass('dis_none') ;
 	});
 	$(".sel_custom_icon").click(function(){
 		$(".custom_icon").removeClass('dis_none');
-		$(".T_type,.color_pick,.default_samples,.custom_font").addClass('dis_none') ;
+		$(".manual_controls,.T_type,.color_pick,.default_samples,.custom_font").addClass('dis_none') ;
 	});
 	$(".sel_text").click(function(){
 		$(".custom_font").removeClass('dis_none');
-		$(".T_type,.color_pick,.default_samples,.custom_icon").addClass('dis_none') ;
+		$(".manual_controls,.T_type,.color_pick,.default_samples,.custom_icon").addClass('dis_none') ;
 	});
-	
+		$(".sel_manual_controls").click(function(){
+		$(".manual_controls").removeClass('dis_none');
+		$(".custom_font,.T_type,.color_pick,.default_samples,.custom_icon").addClass('dis_none') ;
+	});
 	
 	/*=========================SWITCH MENU OVER=====================*/
 	/*==========================select type=====================*/
