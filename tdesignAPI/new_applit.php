@@ -220,11 +220,9 @@
 					</tr>
 				</table>
 				<p><center>Objects</center></p>
-				<ul class='list-group'>
-					<li class='list-group-item obj-sel' id='0'>select object 1</li>
-					<li class='list-group-item obj-sel' id='1'>select object 2</li>
-					<li class='list-group-item obj-sel' id='2'>selectobject 3</li>
-					<li class='list-group-item obj-sel' id='3'>select object 4</li>
+				<ul class='list-group' id='objects'>
+					<!--<li class='list-group-item obj-sel' id='0'>select object 1</li>-->
+					
 				</ul>
 			</div>
 

@@ -1,4 +1,4 @@
-var $type="tee",$color="black",$y_pos="front",$nos_icons=0,$nos_text=0,$custom_img=0;
+var $type="tee",$color="black",$y_pos="front",$nos_icons=0,$nos_text=0,$custom_img=0,type=null,id=null;
 $(document).ready(function(){
 	
 	//ONLOAD
@@ -188,6 +188,7 @@ function getContentDiagonal() {
 		$("#text"+($nos_text)+" textarea" ).css("font-style", $font_style);
 		$("#text"+($nos_text)+" textarea" ).css("color", $font_color);
 		$("#text"+($nos_text)).css({'top':'100px','left':'150px'});
+		$("#objects").append("<li id='txt"+($nos_text+1)+"' class='list-group-item obj-sel'>select text "+($nos_text+1)+"</li>")
 		//document.getElementById("text"+($nos_text)+" textarea").style.textDecoration=(""+$font_u+"");
 		++$nos_text;
 	});
@@ -249,6 +250,7 @@ function capture() {
 				minHeight: 60,
 				minWidth: 60
 				});
+			$("#objects").append("<li id='ico"+($nos_icons+1)+"' class='list-group-item obj-sel'>select image "+($nos_icons+1)+"</li>")
 			$( "#icon"+($nos_icons)+"" ).css({'top':'100px','left':'150px'});
 			++$nos_icons;
 	}
