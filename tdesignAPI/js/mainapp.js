@@ -315,11 +315,19 @@ function moveupdate(obb){
 	$('#height').attr('value',iconHeight); 
 }
 
-function updatetop(val){
+function updatetop(th){
 	if (pointer != null){
-		obj=$(pointer);
-
+		obj=$('#'+pointer+id);
+		v=$(th).val();
+		obj.css('top',v+'px');
 	}
+}
+
+function uptop(){
+	tp=$('#y').val().match(/\d+/)[0];
+	$('#y').val(parseInt(tp)+1);
+	updatetop('#y')
+
 }
 
 function SelectObj(ob){

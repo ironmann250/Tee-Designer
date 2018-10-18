@@ -9,6 +9,7 @@
 <script src="tdesignAPI/js/mainapp.js"></script>
 <link rel="stylesheet" href="tdesignAPI/css/jquery-ui.css" />
 <script src="tdesignAPI/js/jquery-ui.js"></script>
+<script src="tdesignAPI/js/jquery.longclick-min.js"></script>
 
 <script type="text/javascript">
 	function changeval() {
@@ -53,6 +54,11 @@
 	function changeColor(_color) {
 		$('#custom_text').css("color", _color);
 	}
+	$('#uptop').click(500, function(){
+	tp=$('#y').val().match(/\d+/)[0];
+	$('#y').val(parseInt(tp)+1);
+	updatetop('#y');
+	  });
 </script>
 <div class="container design_api_container">
 	<div class='design_api'>
@@ -209,8 +215,8 @@
 					<tr>
 						<td>Move Y
 						<td><button><</button></td>
-						<td><input id='y' class='form-control small input-md' type='number'></td>
-						<td><button>></button></td>
+						<td><input id='y' class='form-control small input-md' type='number' oninput='updatetop(this);'></td>
+						<td><button id='uptop' onclick='uptop();'>></button></td>
 					</tr>
 					<tr>
 						<td>Width
