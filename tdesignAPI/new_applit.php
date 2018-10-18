@@ -10,7 +10,7 @@
 <link rel="stylesheet" href="tdesignAPI/css/jquery-ui.css" />
 <script src="tdesignAPI/js/jquery-ui.js"></script>
 <script src="tdesignAPI/js/jquery.longclick-min.js"></script>
-
+<script src="tdesignAPI/js/jquery.ui.touch-punch.js"></script>
 <script type="text/javascript">
 	function changeval() {
 		$total = parseInt($("#small").val()) + parseInt($("#medium").val()) + parseInt($("#large").val()) + parseInt($("#xlarge").val()) + parseInt($("#xxlarge").val());
