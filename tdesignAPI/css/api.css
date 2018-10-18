@@ -225,6 +225,9 @@ div.upload input {
 .new_icon:hover,.new_text:hover,.new_icon:active,.new_text:active{
 	border:1px solid #777;
 }
+.icon-hovered {
+	border:1px solid #777;
+}
 #fs{
 	width:100px;
 }

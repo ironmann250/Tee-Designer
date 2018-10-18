@@ -1,4 +1,4 @@
-var $type="tee",$color="black",$y_pos="front",$nos_icons=0,$nos_text=0,$custom_img=0,type='',id=null;
+var $iconLeft=0,$iconTop=0,$iconWidth=0,$iconHeight=0,$icon='',$type="tee",$color="black",$y_pos="front",$nos_icons=0,$nos_text=0,$custom_img=0,pointer='',id=null;
 $(document).ready(function(){
 	
 	//ONLOAD
@@ -166,7 +166,7 @@ function getContentDiagonal() {
 		if(!text_val)
 			return false;
 		
-			$("."+$y_pos+"_print").append("<div id=text"+($nos_text)+" class='new_text'  onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);'><span class='drag_text property_icon'  ></span><textarea id='text_style' >"+text_val+"</textarea><span class='delete_text property_icon' onClick='delete_text(this);' ></span></div>");
+			$("."+$y_pos+"_print").append("<div id=text"+($nos_text)+" class='new_text'  onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);' onmousemove='moveupdate(this);'><span class='drag_text property_icon'  ></span><textarea id='text_style' >"+text_val+"</textarea><span class='delete_text property_icon' onClick='delete_text(this);' ></span></div>");
 			$( "#text"+($nos_text)+"" ).draggable({ containment: "parent" });
 			$( "#text"+($nos_text)+"" ).resizable({
 				maxHeight: 480,
@@ -189,7 +189,7 @@ function getContentDiagonal() {
 		$("#text"+($nos_text)+" textarea" ).css("font-style", $font_style);
 		$("#text"+($nos_text)+" textarea" ).css("color", $font_color);
 		$("#text"+($nos_text)).css({'top':'100px','left':'150px'});
-		$("#objects").append("<li id='txt"+($nos_text)+"' class='list-group-item obj-sel'>select text "+($nos_text+1)+"</li>")
+		$("#objects").append("<li id='txt"+($nos_text)+"' class='list-group-item obj-sel' onclick='SelectObj(this);'>select text "+($nos_text+1)+"</li>")
 		//document.getElementById("text"+($nos_text)+" textarea").style.textDecoration=(""+$font_u+"");
 		++$nos_text;
 	});
@@ -243,7 +243,7 @@ function capture() {
 });
 
 	function image_icon($srcimg){
-			$("."+$y_pos+"_print").append("<div id=icon"+($nos_icons)+" class='new_icon' onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);'><span class='delete_icon property_icon' onClick='delete_icons(this);'></span><img src='"+$srcimg+"' width='100%' height='100%' /></div>");
+			$("."+$y_pos+"_print").append("<div id=icon"+($nos_icons)+" class='new_icon' onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);' onmousemove='moveupdate(this);'><span class='delete_icon property_icon' onClick='delete_icons(this);'></span><img src='"+$srcimg+"' width='100%' height='100%' /></div>");
 			$( "#icon"+($nos_icons)+"" ).draggable({ containment: "parent" });
 			$( "#icon"+($nos_icons)+"" ).resizable({
 				maxHeight: 480,
@@ -259,11 +259,12 @@ function capture() {
 function delete_icons(e){
 		
 		$(e).parent('.new_icon').remove();
-		
+		$('#ico'+$(e).parent('.new_icon').attr('id').substring(4)).remove();
 		--$nos_icons;
 	}
 	function show_delete_btn(e){
-	
+		$(".new_icon").removeClass('icon-hovered');
+		$(".new_text").removeClass('icon-hovered');
 		$(e).children('.property_icon').show();
 	}
 	function hide_delete_btn(e){
@@ -274,6 +275,7 @@ function delete_icons(e){
 	/*=============================================*/
 function delete_text(f){
 			$(f).parent('.new_text').remove();
+			$('#txt'+$(f).parent('.new_text').attr('id').substring(4)).remove();
 			--$nos_icons;
 	}
 
@@ -300,25 +302,58 @@ function readURL(input) {
 }
 
 //=========================== manual controls =====================================
+
+function moveupdate(obb){
+	icon=$(obb)
+	iconTop=icon.css('top').match(/\d+/)[0];
+	$('#y').attr('value',iconTop);
+	iconLeft=icon.css('left').match(/\d+/)[0];
+	$('#x').attr('value',iconLeft);
+	iconWidth=icon.css('width').match(/\d+/)[0];
+	$('#width').attr('value',iconWidth);
+	iconHeight=icon.css('height').match(/\d+/)[0];
+	$('#height').attr('value',iconHeight); 
+}
+
+function updatetop(val){
+	if (pointer != null){
+		obj=$(pointer);
+
+	}
+}
+
 function SelectObj(ob){
 	str=$(ob).attr('id');
-	type = str.substring(0, 3);
+	typ = str.substring(0, 3);
 	id =str.substring(3);
 	$(".obj-sel").removeClass('obj-sel-active');
 	$(ob).addClass('obj-sel-active');
-	if (type=='ico') {
-		var icon=$("#icon"+id);
-		var iconTop=icon.css('top');
-		var iconLeft=icon.css('left');
-		var iconWidth=icon.css('width');
-		var iconHeight=icon.css('height');
-		console.log(iconTop);
-		console.log(iconLeft);
-		console.log(iconWidth);
-		console.log(iconHeight);
-	} 
-	else {
+	if (typ=='ico'){
+		pointer='icon';
+	}
+	if (typ=='txt'){
+		pointer='text';
+	}
+	console.log(typ);
+	icon=$('#'+pointer+id);
+	iconTop=icon.css('top').match(/\d+/)[0];
+	$('#y').attr('value',iconTop);
+	iconLeft=icon.css('left').match(/\d+/)[0];
+	$('#x').attr('value',iconLeft);
+	iconWidth=icon.css('width').match(/\d+/)[0];
+	$('#width').attr('value',iconWidth);
+	iconHeight=icon.css('height').match(/\d+/)[0];
+	$('#height').attr('value',iconHeight);
 
+	if (pointer=='icon'){
+	$(".new_icon").removeClass('icon-hovered');
+	$(".new_text").removeClass('icon-hovered');
+	icon.addClass('icon-hovered');
 	}
 
+	if (pointer=='text'){
+		$(".new_icon").removeClass('icon-hovered');
+		$(".new_text").removeClass('icon-hovered');
+		icon.addClass('icon-hovered');
+	}
 }

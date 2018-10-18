@@ -213,6 +213,18 @@
 						<td><button>></button></td>
 					</tr>
 					<tr>
+						<td>Width
+						<td><button><</button></td>
+						<td><input id='width' class='form-control small input-md' type='number'></td>
+						<td><button>></button></td>
+					</tr>
+					<tr>
+						<td>Height
+						<td><button><</button></td>
+						<td><input id='height' class='form-control small input-md' type='number'></td>
+						<td><button>></button></td>
+					</tr>
+					<tr>
 						<td>Rotate
 						<td><button><</button></td>
 						<td><input id='rotate' class='form-control small input-md' type='number'></td>
