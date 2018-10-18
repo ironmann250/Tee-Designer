@@ -203,19 +203,19 @@
 					<tr>
 						<td>Move X
 						<td><button><</button></td>
-						<td><input class='form-control small input-md' type='number'></td>
+						<td><input id='x' class='form-control small input-md' type='number'></td>
 						<td><button>></button></td>
 					</tr>
 					<tr>
 						<td>Move Y
 						<td><button><</button></td>
-						<td><input class='form-control small input-md' type='number'></td>
+						<td><input id='y' class='form-control small input-md' type='number'></td>
 						<td><button>></button></td>
 					</tr>
 					<tr>
 						<td>Rotate
 						<td><button><</button></td>
-						<td><input class='form-control small input-md' type='number'></td>
+						<td><input id='rotate' class='form-control small input-md' type='number'></td>
 						<td><button>></button></td>
 					</tr>
 				</table>

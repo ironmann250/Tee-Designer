@@ -1,4 +1,4 @@
-var $type="tee",$color="black",$y_pos="front",$nos_icons=0,$nos_text=0,$custom_img=0,type=null,id=null;
+var $type="tee",$color="black",$y_pos="front",$nos_icons=0,$nos_text=0,$custom_img=0,type='',id=null;
 $(document).ready(function(){
 	
 	//ONLOAD
@@ -121,6 +121,7 @@ $(document).ready(function(){
 		      	}
 	    });
 	});
+
 /*=====================SAMPLE ICONS over========================*/
 
 /*
@@ -188,7 +189,7 @@ function getContentDiagonal() {
 		$("#text"+($nos_text)+" textarea" ).css("font-style", $font_style);
 		$("#text"+($nos_text)+" textarea" ).css("color", $font_color);
 		$("#text"+($nos_text)).css({'top':'100px','left':'150px'});
-		$("#objects").append("<li id='txt"+($nos_text+1)+"' class='list-group-item obj-sel'>select text "+($nos_text+1)+"</li>")
+		$("#objects").append("<li id='txt"+($nos_text)+"' class='list-group-item obj-sel'>select text "+($nos_text+1)+"</li>")
 		//document.getElementById("text"+($nos_text)+" textarea").style.textDecoration=(""+$font_u+"");
 		++$nos_text;
 	});
@@ -250,7 +251,7 @@ function capture() {
 				minHeight: 60,
 				minWidth: 60
 				});
-			$("#objects").append("<li id='ico"+($nos_icons+1)+"' class='list-group-item obj-sel'>select image "+($nos_icons+1)+"</li>")
+			$("#objects").append("<li id='ico"+($nos_icons)+"' class='list-group-item obj-sel' onclick='SelectObj(this);'>select image "+($nos_icons+1)+"</li>")
 			$( "#icon"+($nos_icons)+"" ).css({'top':'100px','left':'150px'});
 			++$nos_icons;
 	}
@@ -296,4 +297,28 @@ function readURL(input) {
 			};
             reader.readAsDataURL(input.files[0]);
         }
+}
+
+//=========================== manual controls =====================================
+function SelectObj(ob){
+	str=$(ob).attr('id');
+	type = str.substring(0, 3);
+	id =str.substring(3);
+	$(".obj-sel").removeClass('obj-sel-active');
+	$(ob).addClass('obj-sel-active');
+	if (type=='ico') {
+		var icon=$("#icon"+id);
+		var iconTop=icon.css('top');
+		var iconLeft=icon.css('left');
+		var iconWidth=icon.css('width');
+		var iconHeight=icon.css('height');
+		console.log(iconTop);
+		console.log(iconLeft);
+		console.log(iconWidth);
+		console.log(iconHeight);
+	} 
+	else {
+
+	}
+
 }
