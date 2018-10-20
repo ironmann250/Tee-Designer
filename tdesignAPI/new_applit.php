@@ -1,16 +1,16 @@
 <link href='https://fonts.googleapis.com/css?family=Nosifer|League+Script|Yellowtail|Permanent+Marker|Codystar|Eater|Molle:400italic|Snowburst+One|Shojumaru|Frijole|Gloria+Hallelujah|Calligraffitti|Tangerine|Monofett|Monoton|Arbutus|Chewy|Playball|Black+Ops+One|Rock+Salt|Pinyon+Script|Orbitron|Sacramento|Sancreek|Kranky|UnifrakturMaguntia|Creepster|Pirata+One|Seaweed+Script|Miltonian|Herr+Von+Muellerhoff|Rye|Jacques+Francois+Shadow|Montserrat+Subrayada|Akronim|Faster+One|Megrim|Cedarville+Cursive|Ewert|Plaster' rel='stylesheet' type='text/css'>
 
 <link href="tdesignAPI/css/api.css" rel="stylesheet">
+<link href="tdesignAPI/css/jquery.nouislider-min.css" rel="stylesheet">
 <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
-
 <script type="text/javascript" src="tdesignAPI/js/html2canvas.js"></script>
-
 <script src="tdesignAPI/js/jquery.form.js"></script>
-<script src="tdesignAPI/js/mainapp.js"></script>
 <link rel="stylesheet" href="tdesignAPI/css/jquery-ui.css" />
 <script src="tdesignAPI/js/jquery-ui.js"></script>
 <script src="tdesignAPI/js/jquery.longclick-min.js"></script>
-<script src="tdesignAPI/js/jquery.ui.touch-punch.js"></script>
+<script src="tdesignAPI/js/jquery.ui.touch-punch.js"></script> 
+<script src="tdesignAPI/js/jquery.nouislider-min.js"></script>
+<script src="tdesignAPI/js/mainapp.js"></script>
 <script type="text/javascript">
 	function changeval() {
 		$total = parseInt($("#small").val()) + parseInt($("#medium").val()) + parseInt($("#large").val()) + parseInt($("#xlarge").val()) + parseInt($("#xxlarge").val());
@@ -59,6 +59,10 @@
 	$('#y').val(parseInt(tp)+1);
 	updatetop('#y');
 	  });
+
+
+
+
 </script>
 <div class="container design_api_container">
 	<div class='design_api'>
@@ -205,6 +209,7 @@
 			</div>
 
 			<div class="manual_controls">
+				<!--
 				<table style='border:1px solid'>
 					<tr>
 						<td>Move X
@@ -231,12 +236,26 @@
 						<td><button>></button></td>
 					</tr>
 					<tr>
+
+						
 						<td>Rotate
 						<td><button><</button></td>
 						<td><input id='rotate' class='form-control small input-md' type='number'></td>
 						<td><button>></button></td>
+					
+
 					</tr>
-				</table>
+				</table>-->
+				<div id='slidert'></div>
+				<p><b>Top: </b><span id='slider-spant'></span></p>
+				<div id='sliderl'></div>
+				<p><b>Left: </b><span id='slider-spanl'></span></p>
+				<div id='sliderw'></div>
+				<p><b>Width: </b><span id='slider-spanw'></span></p>
+				<div id='sliderh'></div>
+				<p><b>Height: </b><span id='slider-spanh'></span></p>
+				<div id='sliderr'></div>
+				<p><b>Rotate: </b><span id='slider-spanr'></span></p>
 				<p><center>Objects</center></p>
 				<ul class='list-group' id='objects'>
 					<!--<li class='list-group-item obj-sel' id='0'>select object 1</li>-->
@@ -471,6 +490,104 @@
 	$("#imgInp").change(function() {
 		readURL(this);
 	});
+
+	
+
+var slidert = document.getElementById('slidert');
+var sliderl = document.getElementById('sliderl');
+var sliderw = document.getElementById('sliderw');
+var sliderh = document.getElementById('sliderh');
+var sliderr = document.getElementById('sliderr');
+var sliderspant = document.getElementById('slider-spant');
+var sliderspanl = document.getElementById('slider-spanl');
+var sliderspanw = document.getElementById('slider-spanw');
+var sliderspanh = document.getElementById('slider-spanh');
+var sliderspanr = document.getElementById('slider-spanr');
+noUiSlider.create(slidert, {
+    start: 5,
+    range: {
+        min: -200,
+        max: 435
+    }
+});
+noUiSlider.create(sliderl, {
+    start: 0,
+    range: {
+        min: 0,
+        max: 380
+    }
+});
+noUiSlider.create(sliderw, {
+    start: 60,
+    range: {
+        min: 60,
+        max: 450
+    }
+});
+noUiSlider.create(sliderh, {
+    start: 60,
+    range: {
+        min: 60,
+        max: 480
+    }
+});
+noUiSlider.create(sliderr, {
+    start: 0,
+    range: {
+        min: -360,
+        max: 360
+    }
+});
+slidert.noUiSlider.on('update', function (values, handle) {
+	//$('.noUi-handle').text(values[handle]);
+	sliderspant.innerHTML = values[handle];
+	if (pointer != null){
+		obj=$('#'+pointer+id);
+		v=values[handle];
+		obj.css('top',v+'px');
+	}
+});
+sliderl.noUiSlider.on('update', function (values, handle) {
+	//$('.noUi-handle').text(values[handle]);
+	sliderspanl.innerHTML = values[handle];
+	if (pointer != null){
+		obj=$('#'+pointer+id);
+		v=values[handle];
+		obj.css('left',v+'px');
+	}
+});
+sliderw.noUiSlider.on('update', function (values, handle) {
+	//$('.noUi-handle').text(values[handle]);
+	sliderspanw.innerHTML = values[handle];
+	if (pointer != null){
+		obj=$('#'+pointer+id);
+		v=values[handle];
+		obj.css('width',v+'px');
+	}
+});
+
+sliderh.noUiSlider.on('update', function (values, handle) {
+	//$('.noUi-handle').text(values[handle]);
+	sliderspanh.innerHTML = values[handle];
+	if (pointer != null){
+		obj=$('#'+pointer+id);
+		v=values[handle];
+		obj.css('height',v+'px');
+	}
+});
+
+sliderr.noUiSlider.on('update', function (values, handle) {
+	//$('.noUi-handle').text(values[handle]);
+	sliderspanr.innerHTML = values[handle];
+	if (pointer != null){
+		obj=$('#'+pointer+id);
+		v=values[handle];
+		//obj.css('rotate',v+'px');
+	}
+});
+
+
+
 
 </script>
 

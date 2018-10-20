@@ -166,7 +166,7 @@ function getContentDiagonal() {
 		if(!text_val)
 			return false;
 		
-			$("."+$y_pos+"_print").append("<div id=text"+($nos_text)+" class='new_text'  onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);' onmousemove='moveupdate(this);'><span class='drag_text property_icon'  ></span><textarea id='text_style' >"+text_val+"</textarea><span class='delete_text property_icon' onClick='delete_text(this);' ></span></div>");
+			$("."+$y_pos+"_print").append("<div id=text"+($nos_text)+" class='new_text'  onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);' onmousemove='moveupdate(this);' onclick='click_text(this);'><span class='drag_text property_icon'  ></span><textarea id='text_style' >"+text_val+"</textarea><span class='delete_text property_icon' onClick='delete_text(this);' ></span></div>");
 			$( "#text"+($nos_text)+"" ).draggable({ containment: "parent" });
 			$( "#text"+($nos_text)+"" ).resizable({
 				maxHeight: 480,
@@ -243,7 +243,7 @@ function capture() {
 });
 
 	function image_icon($srcimg){
-			$("."+$y_pos+"_print").append("<div id=icon"+($nos_icons)+" class='new_icon' onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);' onmousemove='moveupdate(this);'><span class='delete_icon property_icon' onClick='delete_icons(this);'></span><img src='"+$srcimg+"' width='100%' height='100%' /></div>");
+			$("."+$y_pos+"_print").append("<div id=icon"+($nos_icons)+" class='new_icon' onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);' onmousemove='moveupdate(this);' onclick='click_icon(this);'><span class='delete_icon property_icon' onClick='delete_icons(this);'></span><img src='"+$srcimg+"' width='100%' height='100%' /></div>");
 			$( "#icon"+($nos_icons)+"" ).draggable({ containment: "parent" });
 			$( "#icon"+($nos_icons)+"" ).resizable({
 				maxHeight: 480,
@@ -264,7 +264,9 @@ function delete_icons(e){
 	}
 	function show_delete_btn(e){
 		$(".new_icon").removeClass('icon-hovered');
-		$(".new_text").removeClass('icon-hovered');
+		$(".new_text").removeClass('icon-hovered')
+		click_icon(e);
+		click_text(e);
 		$(e).children('.property_icon').show();
 	}
 	function hide_delete_btn(e){
@@ -278,7 +280,20 @@ function delete_text(f){
 			$('#txt'+$(f).parent('.new_text').attr('id').substring(4)).remove();
 			--$nos_icons;
 	}
-
+function click_icon(i){
+	try{
+	SelectObj('#ico'+$(i).attr('id').substring(4));
+} catch(err){
+	return 0;
+}
+}
+function click_text(i){
+	try{
+	SelectObj('#txt'+$(i).attr('id').substring(4));
+} catch(err){
+	return 0;
+}
+}
 function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();            
@@ -307,12 +322,16 @@ function moveupdate(obb){
 	icon=$(obb)
 	iconTop=icon.css('top').match(/\d+/)[0];
 	$('#y').attr('value',iconTop);
+	slidert.noUiSlider.set(parseInt(iconTop));
 	iconLeft=icon.css('left').match(/\d+/)[0];
 	$('#x').attr('value',iconLeft);
+	sliderl.noUiSlider.set(parseInt(iconLeft));
 	iconWidth=icon.css('width').match(/\d+/)[0];
 	$('#width').attr('value',iconWidth);
+	sliderw.noUiSlider.set(parseInt(iconWidth));
 	iconHeight=icon.css('height').match(/\d+/)[0];
 	$('#height').attr('value',iconHeight); 
+	sliderh.noUiSlider.set(parseInt(iconHeight));
 }
 
 function updatetop(th){
@@ -346,12 +365,16 @@ function SelectObj(ob){
 	icon=$('#'+pointer+id);
 	iconTop=icon.css('top').match(/\d+/)[0];
 	$('#y').attr('value',iconTop);
+	slidert.noUiSlider.set(parseInt(iconTop));
 	iconLeft=icon.css('left').match(/\d+/)[0];
 	$('#x').attr('value',iconLeft);
+	sliderl.noUiSlider.set(parseInt(iconLeft));
 	iconWidth=icon.css('width').match(/\d+/)[0];
 	$('#width').attr('value',iconWidth);
+	sliderw.noUiSlider.set(parseInt(iconWidth));
 	iconHeight=icon.css('height').match(/\d+/)[0];
-	$('#height').attr('value',iconHeight);
+	$('#height').attr('value',iconHeight); 
+	sliderh.noUiSlider.set(parseInt(iconHeight));
 
 	if (pointer=='icon'){
 	$(".new_icon").removeClass('icon-hovered');
