@@ -263,10 +263,10 @@ function delete_icons(e){
 		--$nos_icons;
 	}
 	function show_delete_btn(e){
-		$(".new_icon").removeClass('icon-hovered');
-		$(".new_text").removeClass('icon-hovered')
 		click_icon(e);
 		click_text(e);
+		$(".new_icon").removeClass('icon-hovered');
+		$(".new_text").removeClass('icon-hovered')
 		$(e).children('.property_icon').show();
 	}
 	function hide_delete_btn(e){
