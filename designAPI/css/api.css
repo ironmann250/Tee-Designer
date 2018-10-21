@@ -225,9 +225,6 @@ div.upload input {
 .new_icon:hover,.new_text:hover,.new_icon:active,.new_text:active{
 	border:1px solid #777;
 }
-.icon-hovered {
-	border:1px solid #777;
-}
 #fs{
 	width:100px;
 }
@@ -447,50 +444,3 @@ padding-top:5px;
     cursor: inherit;
     display: block;
 }
-
-.obj-sel{
-	cursor:pointer;
-}
-.obj-sel:hover{
-	background:#f1f1f1;
-	box-shadow:0 0 5px #acacac;
-
-}
-
-.obj-sel-active{
-	background:#d3d3d3;
-}
-.obj-sel-active:hover{
-	background:#d3d3d3;
-}
-.manual_controls{
-	
-	width:180px;
-	height:520px;
-	border:1px solid #acacac;
-	background:#f1f1f1;
-	overflow-y:scroll
-}
-
-.manual_controls::-webkit-scrollbar{
-width:8px;
-background-color:#cccccc;
-}
-
-.manual_controls::-webkit-scrollbar-thumb{
-background-color:#acacac;
-border-radius:4px;
-}
-
-.manual_controls::-webkit-scrollbar-thumb:hover{
-background-color:#9c9c9c;
-border-radius:4px;
-}
-
-.sel_manual_controls:hover{
-	background:#83CBEE;
-}
-
-
-
-

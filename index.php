@@ -29,7 +29,7 @@
 	<div id="maindiv">
 		
 		<?php
-			include 'tdesignAPI/new_applit.php';
+			include 'designAPI/new_applit.php';
 		?>
 	</div>
 	

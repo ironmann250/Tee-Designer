@@ -1,4 +1,4 @@
-var $iconLeft=0,$iconTop=0,$iconWidth=0,$iconHeight=0,$icon='',$type="tee",$color="black",$y_pos="front",$nos_icons=0,$nos_text=0,$custom_img=0,pointer='',id=null;
+var $type="tee",$color="black",$y_pos="front",$nos_icons=0,$nos_text=0,$custom_img=0;
 $(document).ready(function(){
 	
 	//ONLOAD
@@ -6,7 +6,7 @@ $(document).ready(function(){
 	$("#preview_back").css('background-image', 'url(tdesignAPI/images/product/'+$type+'/'+$color+'/'+$color+'_back.png) ') ;
 	//$("#preview_front, #preview_back , #preview_left, #preview_right").css('background-color', 'blue') ;
 	$("#preview_front,.T_type").removeClass('dis_none');
-	$("#preview_back,.color_pick,.default_samples,.custom_icon,.custom_font,.manual_controls").addClass('dis_none');
+	$("#preview_back,.color_pick,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
 	//$('.modal').css('dispaly','none');
 
 	//ONLOAD OVER
@@ -14,28 +14,25 @@ $(document).ready(function(){
 	/*==========================SWITCH MENU===========================*/
 	$(".sel_type").click(function(){
 		$(".T_type").removeClass('dis_none');
-		$(".manual_controls,.color_pick,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
+		$(".color_pick,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
 	});
 	$(".sel_color").click(function(){
 		$(".color_pick").removeClass('dis_none');
-		$(".manual_controls,.T_type,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
+		$(".T_type,.default_samples,.custom_icon,.custom_font").addClass('dis_none') ;
 	});
 	$(".sel_art").click(function(){
 		$(".default_samples").removeClass('dis_none');
-		$(".manual_controls,.T_type,.color_pick,.custom_icon,.custom_font").addClass('dis_none') ;
+		$(".T_type,.color_pick,.custom_icon,.custom_font").addClass('dis_none') ;
 	});
 	$(".sel_custom_icon").click(function(){
 		$(".custom_icon").removeClass('dis_none');
-		$(".manual_controls,.T_type,.color_pick,.default_samples,.custom_font").addClass('dis_none') ;
+		$(".T_type,.color_pick,.default_samples,.custom_font").addClass('dis_none') ;
 	});
 	$(".sel_text").click(function(){
 		$(".custom_font").removeClass('dis_none');
-		$(".manual_controls,.T_type,.color_pick,.default_samples,.custom_icon").addClass('dis_none') ;
+		$(".T_type,.color_pick,.default_samples,.custom_icon").addClass('dis_none') ;
 	});
-		$(".sel_manual_controls").click(function(){
-		$(".manual_controls").removeClass('dis_none');
-		$(".custom_font,.T_type,.color_pick,.default_samples,.custom_icon").addClass('dis_none') ;
-	});
+	
 	
 	/*=========================SWITCH MENU OVER=====================*/
 	/*==========================select type=====================*/
@@ -121,7 +118,6 @@ $(document).ready(function(){
 		      	}
 	    });
 	});
-
 /*=====================SAMPLE ICONS over========================*/
 
 /*
@@ -166,7 +162,7 @@ function getContentDiagonal() {
 		if(!text_val)
 			return false;
 		
-			$("."+$y_pos+"_print").append("<div id=text"+($nos_text)+" class='new_text'  onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);' onmousemove='moveupdate(this);' onclick='click_text(this);'><span class='drag_text property_icon'  ></span><textarea id='text_style' >"+text_val+"</textarea><span class='delete_text property_icon' onClick='delete_text(this);' ></span></div>");
+			$("."+$y_pos+"_print").append("<div id=text"+($nos_text)+" class='new_text'  onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);'><span class='drag_text property_icon'  ></span><textarea id='text_style' >"+text_val+"</textarea><span class='delete_text property_icon' onClick='delete_text(this);' ></span></div>");
 			$( "#text"+($nos_text)+"" ).draggable({ containment: "parent" });
 			$( "#text"+($nos_text)+"" ).resizable({
 				maxHeight: 480,
@@ -189,7 +185,6 @@ function getContentDiagonal() {
 		$("#text"+($nos_text)+" textarea" ).css("font-style", $font_style);
 		$("#text"+($nos_text)+" textarea" ).css("color", $font_color);
 		$("#text"+($nos_text)).css({'top':'100px','left':'150px'});
-		$("#objects").append("<li id='txt"+($nos_text)+"' class='list-group-item obj-sel' onclick='SelectObj(this);'>select text "+($nos_text+1)+"</li>")
 		//document.getElementById("text"+($nos_text)+" textarea").style.textDecoration=(""+$font_u+"");
 		++$nos_text;
 	});
@@ -243,7 +238,7 @@ function capture() {
 });
 
 	function image_icon($srcimg){
-			$("."+$y_pos+"_print").append("<div id=icon"+($nos_icons)+" class='new_icon' onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);' onmousemove='moveupdate(this);' onclick='click_icon(this);'><span class='delete_icon property_icon' onClick='delete_icons(this);'></span><img src='"+$srcimg+"' width='100%' height='100%' /></div>");
+			$("."+$y_pos+"_print").append("<div id=icon"+($nos_icons)+" class='new_icon' onmouseover='show_delete_btn(this);' onmouseout='hide_delete_btn(this);'><span class='delete_icon property_icon' onClick='delete_icons(this);'></span><img src='"+$srcimg+"' width='100%' height='100%' /></div>");
 			$( "#icon"+($nos_icons)+"" ).draggable({ containment: "parent" });
 			$( "#icon"+($nos_icons)+"" ).resizable({
 				maxHeight: 480,
@@ -251,7 +246,6 @@ function capture() {
 				minHeight: 60,
 				minWidth: 60
 				});
-			$("#objects").append("<li id='ico"+($nos_icons)+"' class='list-group-item obj-sel' onclick='SelectObj(this);'>select image "+($nos_icons+1)+"</li>")
 			$( "#icon"+($nos_icons)+"" ).css({'top':'100px','left':'150px'});
 			++$nos_icons;
 	}
@@ -259,14 +253,11 @@ function capture() {
 function delete_icons(e){
 		
 		$(e).parent('.new_icon').remove();
-		$('#ico'+$(e).parent('.new_icon').attr('id').substring(4)).remove();
+		
 		--$nos_icons;
 	}
 	function show_delete_btn(e){
-		click_icon(e);
-		click_text(e);
-		$(".new_icon").removeClass('icon-hovered');
-		$(".new_text").removeClass('icon-hovered')
+	
 		$(e).children('.property_icon').show();
 	}
 	function hide_delete_btn(e){
@@ -277,23 +268,9 @@ function delete_icons(e){
 	/*=============================================*/
 function delete_text(f){
 			$(f).parent('.new_text').remove();
-			$('#txt'+$(f).parent('.new_text').attr('id').substring(4)).remove();
 			--$nos_icons;
 	}
-function click_icon(i){
-	try{
-	SelectObj('#ico'+$(i).attr('id').substring(4));
-} catch(err){
-	return 0;
-}
-}
-function click_text(i){
-	try{
-	SelectObj('#txt'+$(i).attr('id').substring(4));
-} catch(err){
-	return 0;
-}
-}
+
 function readURL(input) {
         if (input.files && input.files[0]) {
             var reader = new FileReader();            
@@ -314,77 +291,4 @@ function readURL(input) {
 			};
             reader.readAsDataURL(input.files[0]);
         }
-}
-
-//=========================== manual controls =====================================
-
-function moveupdate(obb){
-	icon=$(obb)
-	iconTop=icon.css('top').match(/\d+/)[0];
-	$('#y').attr('value',iconTop);
-	slidert.noUiSlider.set(parseInt(iconTop));
-	iconLeft=icon.css('left').match(/\d+/)[0];
-	$('#x').attr('value',iconLeft);
-	sliderl.noUiSlider.set(parseInt(iconLeft));
-	iconWidth=icon.css('width').match(/\d+/)[0];
-	$('#width').attr('value',iconWidth);
-	sliderw.noUiSlider.set(parseInt(iconWidth));
-	iconHeight=icon.css('height').match(/\d+/)[0];
-	$('#height').attr('value',iconHeight); 
-	sliderh.noUiSlider.set(parseInt(iconHeight));
-}
-
-function updatetop(th){
-	if (pointer != null){
-		obj=$('#'+pointer+id);
-		v=$(th).val();
-		obj.css('top',v+'px');
-	}
-}
-
-function uptop(){
-	tp=$('#y').val().match(/\d+/)[0];
-	$('#y').val(parseInt(tp)+1);
-	updatetop('#y')
-
-}
-
-function SelectObj(ob){
-	str=$(ob).attr('id');
-	typ = str.substring(0, 3);
-	id =str.substring(3);
-	$(".obj-sel").removeClass('obj-sel-active');
-	$(ob).addClass('obj-sel-active');
-	if (typ=='ico'){
-		pointer='icon';
-	}
-	if (typ=='txt'){
-		pointer='text';
-	}
-	console.log(typ);
-	icon=$('#'+pointer+id);
-	iconTop=icon.css('top').match(/\d+/)[0];
-	$('#y').attr('value',iconTop);
-	slidert.noUiSlider.set(parseInt(iconTop));
-	iconLeft=icon.css('left').match(/\d+/)[0];
-	$('#x').attr('value',iconLeft);
-	sliderl.noUiSlider.set(parseInt(iconLeft));
-	iconWidth=icon.css('width').match(/\d+/)[0];
-	$('#width').attr('value',iconWidth);
-	sliderw.noUiSlider.set(parseInt(iconWidth));
-	iconHeight=icon.css('height').match(/\d+/)[0];
-	$('#height').attr('value',iconHeight); 
-	sliderh.noUiSlider.set(parseInt(iconHeight));
-
-	if (pointer=='icon'){
-	$(".new_icon").removeClass('icon-hovered');
-	$(".new_text").removeClass('icon-hovered');
-	icon.addClass('icon-hovered');
-	}
-
-	if (pointer=='text'){
-		$(".new_icon").removeClass('icon-hovered');
-		$(".new_text").removeClass('icon-hovered');
-		icon.addClass('icon-hovered');
-	}
 }
